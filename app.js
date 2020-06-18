@@ -7,7 +7,7 @@ const mongoose=require('mongoose');
 
 const userRoutes=require('./routes/user');
 
-const app=express();
+const app = express();
 
 app.use(bodyParser.json()); 
 
