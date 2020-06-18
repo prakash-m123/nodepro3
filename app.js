@@ -36,7 +36,7 @@ app.use((error, req, res, next) => {
       'mongodb+srv://prakash:OIc4mMufrAuM2uv1@cluster0-fb3y5.mongodb.net/nodetest?retryWrites=true'
     )
     .then(result => {
-      app.listen(8000);
+      app.listen(7000);
     })
     .catch(err => console.log(err));
   
