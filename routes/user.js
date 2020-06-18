@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
 
-const{ body } = require("express-validator");
+const{ body } = require('express-validator');
 
-const User=require("../models/user");
-const userController= require("../controllers/user");
+const User=require('../models/user');
+const userController= require('../controllers/user');
 
 const router = express.Router();
 
@@ -16,7 +16,7 @@ router.put('/register',
  .trim()
  .isEmail()
  .withMessage('Enter valid email')
- .custom((value) => {
+ .custom((value ,{req}) => {
      return User.findOne({ email:value }).then(userDoc=>{
          if(userDoc){
              return Promise.reject('Email alreay exists');
@@ -29,7 +29,7 @@ router.put('/register',
    .isLength({ min:5 })
  
 ],
-userController.userreg);
+userController.userreg );
 
 
 module.exports = router;
