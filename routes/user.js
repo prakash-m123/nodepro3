@@ -9,15 +9,9 @@ const router = express.Router();
 
 router.put('/register',
 [
- body('firstname')
- .not()
- .isEmpty(),
- body('lastname')
- .not()
- .isEmpty(),
  body('phone')
  .trim()
- .isLength({min:10}),
+ .isLength({ min:10 }),
  body('email')
  .trim()
  .isEmail()
@@ -32,7 +26,7 @@ router.put('/register',
   .normalizeEmail(),
    body('password')
    .trim()
-   .isLength({min:5})
+   .isLength({ min:5 })
  
 ],
 userController.userreg);
