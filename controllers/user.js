@@ -20,13 +20,13 @@ exports.userreg = (req, res, next) => {
     const password = req.body.password;
     bcrypt
       .hash(password, 12)
-      .then(hashedPw => {
+      .then(hashedPass => {
         const user = new User({
           firstname: firstname,
           lastname: lastname,
           phone: phone,
           email: email,
-          password: hashedPw,
+          password: hashedPass.toString(),
           
         });
         return user.save();
