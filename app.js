@@ -19,3 +19,24 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   next();
 });
+
+app.use((error,req,res,next)=>{
+    console.log(error);
+    const status = error.statusCode ||500;
+    const message = error.message;
+    const data = error.data;
+    
+    res.status(status).json({message:message, data:data});
+    
+});
+mongoose
+  .connect(
+    'mongodb+srv://prakash:OIc4mMufrAuM2uv1@cluster0-fb3y5.mongodb.net/nodetest?retryWrites=true'
+  )
+  .then(result => {
+    app.listen(8000);
+  })
+  .catch(err => 
+    console.log(err));
+
+
