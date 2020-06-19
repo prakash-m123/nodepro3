@@ -87,3 +87,23 @@ exports.userreg = (req,res,next) => {
       
   };
   
+  exports.getUser = (req, res,next) => {
+    const userId = req.params.userId;
+   User.findById(userId)
+      .then(user => {
+        if (!user) {
+          const error = new Error('Could not find user.');
+          error.statusCode = 404;
+          throw error;
+        }
+        res.status(200).json({ message: 'user fetched.', user: user });
+      
+      })
+      .catch(err => {
+        if (!err.statusCode) {
+          err.statusCode = 500;
+        }
+       
+        next(err);
+      });
+  };
