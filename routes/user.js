@@ -32,7 +32,7 @@ userController.userreg );
 
 router.post('/sign',userController.sign);
 
-router.get('/user/:userId',isAuth,userController.getUser);
+router.get('/:userId',isAuth,userController.getUser);
 
 
 module.exports = router;
