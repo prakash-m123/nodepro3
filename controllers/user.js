@@ -90,6 +90,8 @@ exports.userreg = (req,res,next) => {
   exports.getUser = (req,res,next) => {
     const userId = req.params.userId;
    User.findById(userId)
+    //.select("user firstname phone")
+    //.populate("lastname")
       .then(user => {
         if (!user) {
           const error = new Error('Could not find user.');
@@ -107,3 +109,22 @@ exports.userreg = (req,res,next) => {
         next(err);
       });
   };
+  exports.updateuser=(req,res,next)=>{
+    const Id=req.params.userId;
+    const updateops={};
+    for (let ops of req.body){
+      updateops[ops.propname]=ops.value;
+    }
+
+    User.update ({_id:Id},{$set:updateops} )  //{$set:{name:req.body.name}}
+    .then(result=>{
+      res.status(200).json({message:'user updated'});
+    })
+    .catch(err=>{
+     if(!err.statusCode){
+       err.statusCode=500;
+     }
+     next(err);
+    })
+
+  }

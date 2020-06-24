@@ -34,5 +34,6 @@ router.post('/sign',userController.sign);
 
 router.get('/:userId',isAuth,userController.getUser);
 
+router.patch('/:userId',userController.updateuser);
 
 module.exports = router;
